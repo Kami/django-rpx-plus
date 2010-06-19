@@ -210,7 +210,11 @@ def register(request):
         #Clean the username to allow only alphanum and underscore.
         username =  rpx_profile.get('preferredUsername') or \
                     rpx_profile.get('displayName')
-        username = re.sub(r'[^\w+]', '', username)
+                    
+        if username:
+             username = re.sub(r'[^\w+]', '', username)
+        else:
+            username = ''
 
         form = RegisterForm(initial = {
             'username': username,
